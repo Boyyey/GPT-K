@@ -1,0 +1,61 @@
+# Core Configuration
+core:
+  debug: false
+  log_level: INFO
+  data_dir: "data"
+  models_dir: "models"
+
+# Audio Configuration
+audio:
+  sample_rate: 16000
+  channels: 1
+  chunk_size: 1024
+  silence_duration: 0.5  # seconds
+  vad_aggressiveness: 3  # 0-3, 3 is most aggressive
+  input_device: null  # Set to device index or null for default
+  output_device: null  # Set to device index or null for default
+
+# LLM Configuration
+llm:
+  model_path: "models/llm/phi-2.Q4_K_M.gguf"
+  context_window: 2048
+  max_tokens: 512
+  temperature: 0.7
+  top_p: 0.9
+  top_k: 40
+  repeat_penalty: 1.1
+
+# STT Configuration
+stt:
+  model_size: "base"  # tiny, base, small, medium, large
+  language: "en"
+  temperature: 0.0
+  best_of: 5
+  beam_size: 5
+  word_timestamps: false
+  fp16: true  # Use FP16 if available
+
+# TTS Configuration
+tts:
+  model_path: "models/piper/voice-en-us-amy-medium.onnx"
+  speaker: 0
+  length_scale: 1.0
+  noise_scale: 0.667
+  noise_w: 0.8
+
+# Memory Configuration
+memory:
+  max_episodic_entries: 1000
+  max_semantic_entries: 10000
+  embedding_model: "all-MiniLM-L6-v2"
+  embedding_dim: 384
+  db_path: "data/memories.db"
+
+# Tools Configuration
+tools:
+  enabled_tools:
+    - file_read
+    - file_write
+    - system_info
+    - web_search  # Local offline search
+  require_confirmation: true
